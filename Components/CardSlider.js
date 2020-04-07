@@ -6,7 +6,7 @@ import CardSilder from 'react-native-cards-slider';
   render(){
     return(
       <View style={{}}>
-        <Text style={{fontSize: 30, color: '#000',marginTop: -170 ,textAlign: 'center', fontWeight:'bold'}}>
+        <Text style={{fontSize: 30, color: '#000',marginTop: -170 ,textAlign: 'center', color: 'dodgerblue'}}>
           Categories
         </Text>
         <CardSilder style={{margin: 10}}>
