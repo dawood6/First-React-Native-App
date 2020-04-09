@@ -1,57 +1,87 @@
-import React, { Component } from 'react';
-import {  Text, View } from 'react-native';
-import CardSilder from 'react-native-cards-slider';
+import React, { Component } from "react";
+import { Text, View, Dimensions } from "react-native";
+import Carousel from "react-native-snap-carousel";
 
- export default class CardSilderApp extends Component{
-  render(){
-    return(
-      <View style={{}}>
-        <Text style={{fontSize: 30, color: '#000',marginTop: -170 ,textAlign: 'center', color: 'dodgerblue'}}>
-          Categories
+const { width } = Dimensions.get("window");
+const height = width * 0.6;
+
+export default class CardSilderApp extends Component {
+  state = {
+    categories: [
+      {
+        title: "Groceries",
+        style: 'skyblue',
+      },
+      {
+        title: "Electronics",
+        style: 'lightsalmon',
+      },
+      {
+        title: "Crokery",
+        style: 'teal',
+      },
+      {
+        title: "SmartPhones",
+        style: 'lightpink',
+      },
+      {
+        title: "Sports & Outdoor",
+        style: 'lightseagreen',
+      },
+      {
+        title: "Health & Beauty",
+        style: 'lightcoral'
+      },
+      {
+        title: "Pets",
+        style: 'lightsteelblue'
+      },
+      {
+        title: "Babies & Toys",
+        style: 'mediumslatebluel'
+      },
+    ],
+  };
+
+  
+
+  _renderItem = ({ item, index }) => {
+    return (
+      <View>
+        <Text
+          style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'lightcoral' }}
+        >
+          {item.title}
         </Text>
-        <CardSilder style={{margin: 10}}>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'skyblue'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-              Groceries
-            </Text>
-          </View>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'lightsalmon'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-                Electronics
-            </Text>
-          </View>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'teal'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-              Crokery
-            </Text>
-          </View>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'lightpink'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-              SmartPhones
-            </Text>
-          </View>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'lightseagreen'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-              Pets
-            </Text>
-          </View>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'lightcoral'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-              Babies & Toys
-            </Text>
-          </View>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'lightsteelblue'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-            Sports & Outdoor
-            </Text>
-          </View>
-          <View style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'mediumslateblue'}}>
-            <Text style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}>
-            Health & Beauty
-            </Text>
-          </View>
-        </CardSilder>
       </View>
-    )
+    );
+  };
+  render() {
+    return (
+      <View>
+        <View>
+          <Text style={{
+            fontSize: 30,
+            color: "#000",
+            textAlign: "center",
+            color: "dodgerblue",
+            marginTop: -170
+          }}>Categories</Text>
+        </View>
+        <Carousel
+          layout={'tinder'}
+          style={{margin: 10}}
+          ref={(ref) => (this.carousel = ref)}
+          data={this.state.categories}
+          renderItem={this._renderItem}
+          sliderWidth={width}
+          itemWidth={height}
+        />
+      </View>
+    );
   }
 }
+
+// style={{fontSize: 30, color: '#000',marginTop: -170 ,textAlign: 'center', color: 'dodgerblue'}}
+
+// style={{color: 'lightcyan', fontSize: 24, fontWeight: 'bold'}}

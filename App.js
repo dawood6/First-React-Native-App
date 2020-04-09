@@ -7,7 +7,6 @@ import ProuductSlider1 from './Components/ProuductsSlider1'
 import Footer from './Components/Footer'
 
 
-
 export default class App extends Component {
     render() {
         return (
