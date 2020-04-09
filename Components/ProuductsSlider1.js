@@ -73,7 +73,6 @@ export default class ProuductSlider1 extends Component {
         <CountDown
           style={{ marginLeft: 120, marginTop: -45 }}
           digitTxtStyle={{ color: "dodgerblue" }}
-          digitStyle={{ backgroundColor: "#000" }}
           until={2000}
           timeToShow={["H", "M", "S"]}
           size={20}

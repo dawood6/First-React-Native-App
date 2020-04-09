@@ -5,51 +5,59 @@ import Carousel from "react-native-snap-carousel";
 const { width } = Dimensions.get("window");
 const height = width * 0.6;
 
+console.log(width);
+
 export default class CardSilderApp extends Component {
   state = {
     categories: [
       {
         title: "Groceries",
-        style: 'skyblue',
+        style: "skyblue",
       },
       {
         title: "Electronics",
-        style: 'lightsalmon',
+        style: "lightsalmon",
       },
       {
         title: "Crokery",
-        style: 'teal',
+        style: "teal",
       },
       {
         title: "SmartPhones",
-        style: 'lightpink',
+        style: "lightpink",
       },
       {
         title: "Sports & Outdoor",
-        style: 'lightseagreen',
+        style: "lightseagreen",
       },
       {
         title: "Health & Beauty",
-        style: 'lightcoral'
+        style: "lightcoral",
       },
       {
         title: "Pets",
-        style: 'lightsteelblue'
+        style: "lightsteelblue",
       },
       {
         title: "Babies & Toys",
-        style: 'mediumslatebluel'
+        style: "mediumslateblue",
       },
     ],
   };
-
-  
 
   _renderItem = ({ item, index }) => {
     return (
       <View>
         <Text
-          style={{height: 170, justifyContent:'center', alignItems:'center', backgroundColor: 'lightcoral' }}
+          style={{
+            backgroundColor: item.style,
+            color: "lightcyan",
+            width,
+            height,
+            fontSize: 40,
+            paddingTop: 80,
+            textAlign: "center",
+          }}
         >
           {item.title}
         </Text>
@@ -60,22 +68,28 @@ export default class CardSilderApp extends Component {
     return (
       <View>
         <View>
-          <Text style={{
-            fontSize: 30,
-            color: "#000",
-            textAlign: "center",
-            color: "dodgerblue",
-            marginTop: -170
-          }}>Categories</Text>
+          <Text
+            style={{
+              fontSize: 30,
+              color: "#000",
+              textAlign: "center",
+              color: "dodgerblue",
+              marginBottom: 20,
+            }}
+          >
+            Categories
+          </Text>
         </View>
         <Carousel
-          layout={'tinder'}
-          style={{margin: 10}}
+          layout={"tinder"}
+          style={{ margin: 10 }}
           ref={(ref) => (this.carousel = ref)}
           data={this.state.categories}
           renderItem={this._renderItem}
           sliderWidth={width}
-          itemWidth={height}
+          itemWidth={width}
+          sliderHeight={height}
+          itemHeight={height}
         />
       </View>
     );
