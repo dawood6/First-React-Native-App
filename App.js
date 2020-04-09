@@ -2,50 +2,44 @@ import React, { Component, Fragment } from "react";
 import Main from "./Components/Main";
 import Couresol from "./Components/Couresol";
 import CardSliderApp from "./Components/CardSlider";
-import { ScrollView } from "react-native";
+import { ScrollView, View, Image,Text, Dimensions } from "react-native";
 import ProuductSlider1 from "./Components/ProuductsSlider1";
 import Footer from "./Components/Footer";
-import AnimatedLoader from "react-native-animated-loader";
+import PreLoader from "./Components/Pre-Loader";
 
+
+const { width } = Dimensions.get("window");
+const height = width * 0.6;
 export default class App extends Component {
   state = {
-    visible: false,
+    loaded: false,
   };
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        visible: !this.state.visible,
-      });
-    }, 30000);
+  constructor() {
+    super(); 
+    PreLoader.load((v) => this.setState({ loaded: true }));
   }
 
   render() {
-    const { visible } = this.state;
     return (
       <Fragment>
-        <AnimatedLoader
-          visible={visible}
-          overlayColor="rgba(255,255,255,0.75)"
-          source={require("./loader.json")}
-          animationStyle={styles.lottie}
-          speed={1}
-        />
-        <ScrollView>
-          <Main />
-          <Couresol />
-          <CardSliderApp />
-          <ProuductSlider1 />
-          <Footer />
-        </ScrollView>
+        { this.state.loaded ?
+         
+          <ScrollView>  
+            <Main />
+            <Couresol />
+            <CardSliderApp />
+            <ProuductSlider1 />
+            <Text></Text>
+            <Footer />
+          </ScrollView>
+          :<Image 
+          source={require('./Components/Images/17681-delivery-boy-animation.gif')} 
+          style={{marginLeft: -30, width,height, marginTop: 200,}}
+          
+          />
+        }
       </Fragment>
     );
   }
 }
-
-const styles = StyleSheet.create({
-    lottie: {
-      width: 100,
-      height: 100
-    }
-  });
